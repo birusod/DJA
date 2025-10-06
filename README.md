@@ -28,6 +28,7 @@ To learn SQL basics, I followed the tutorial on YouTube from Luke Barousse (*Lea
 
 2. What skills are required for these top-paying jobs?
 *Results for top skills* 
+
 ![top skill plot](pqueries\Plots\topSkills.png)
 
 3. What skills are most in demand for data analysts?
@@ -47,7 +48,9 @@ To learn SQL basics, I followed the tutorial on YouTube from Luke Barousse (*Lea
 | azure      | 821            |
 
 4. Which skills are associated with higher salaries?
+
 *Results for top 10 paying skills:*
+
 | Skill           | Average Salary ($) |
 |-----------------|--------------------|
 | pyspark         | 208,172.3          |

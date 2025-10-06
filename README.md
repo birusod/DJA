@@ -29,7 +29,7 @@ To learn SQL basics, I followed the tutorial on YouTube from Luke Barousse (*Lea
 2. What skills are required for these top-paying jobs?
 *Results for top skills* 
 
-![top skill plot](pqueries\Plots\topSkills.png)
+![top skill plot](pqueries/Plots/topSkills.png)
 
 3. What skills are most in demand for data analysts?
 

@@ -45,6 +45,19 @@ WHERE job_title_short = 'Data Analyst'
     AND salary_year_avg IS NOT NULL
 ORDER BY salary_year_avg DESC
 LIMIT 10;
+
+SELECT 
+    name AS company,
+    ROUND(AVG(salary_year_avg), 2) AS average
+FROM job_postings_fact
+    LEFT JOIN company_dim USING (company_id)
+WHERE job_title_short = 'Data Analyst'
+    AND job_location = 'Anywhere'
+    AND salary_year_avg IS NOT NULL
+GROUP BY name
+ORDER BY average DESC
+LIMIT 10;
+
 /*----------------------------------------*/
 -- Job search from Mali: what skills are required?
 SELECT DISTINCT(job_location)
@@ -116,11 +129,12 @@ ORDER BY total DESC;
  
  /*TOP PAYING JOBS SKILLS -----------------------*/
 WITH top_paying_jobs_cte AS (
-    SELECT job_id,
-        job_title_short,
-        salary_year_avg,
+    SELECT 
+        job_id,
+        --job_title_short,
         job_posted_date::DATE AS posted_date,
-        name AS company
+        name AS company,
+        salary_year_avg
     FROM job_postings_fact
         LEFT JOIN company_dim USING (company_id)
     WHERE job_title_short = 'Data Analyst'
@@ -137,7 +151,7 @@ FROM top_paying_jobs_cte
 WHERE skills IS NOT NULL
 ORDER BY salary_year_avg DESC;
 /*----------------------------------------*/
-/*SKILLS COUNT FRO REMOTE JOBS------------*/
+/*SKILLS COUNT FOR REMOTE JOBS------------*/
 WITH top_skills_remote_cte AS (
     SELECT skill_id,
         count(*) AS total
@@ -369,6 +383,7 @@ HAVING COUNT(skills_job_dim.skill_id) > 10
 ORDER BY salary DESC,
     total DESC
 LIMIT 10;
+
 SELECT skills_dim.skill_id,
     skills_dim.skills,
     COUNT(*) AS total,
